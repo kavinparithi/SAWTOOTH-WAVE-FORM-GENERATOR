@@ -1,0 +1,30 @@
+* c:\avkk\waveformgenerator\waveformgenerator.cir
+
+.include avsd_opamp.sub
+.include "C:\FOSSEE\eSim\library\sky130_fd_pr\models\sky130_fd_pr__model__r+c.model.spice"
+.include "C:\FOSSEE\eSim\library\sky130_fd_pr\models\sky130_fd_pr__model__inductors.model.spice"
+.include "C:\FOSSEE\eSim\library\sky130_fd_pr\models\sky130_fd_pr__model__diode_pd2nw_11v0.model.spice"
+.include "C:\FOSSEE\eSim\library\sky130_fd_pr\models\sky130_fd_pr__model__pnp.model.spice"
+.include "C:\FOSSEE\eSim\library\sky130_fd_pr\models\sky130_fd_pr__model__diode_pw2nd_11v0.model.spice"
+.lib "C:\FOSSEE\eSim\library\sky130_fd_pr\models\sky130.lib.spice" tt
+.include "C:\FOSSEE\eSim\library\sky130_fd_pr\models\sky130_fd_pr__model__linear.model.spice"
+v1  vin gnd pulse(0 5 0.1m 0.1m 0.1m 0.1 0.2)
+x1 net-_x1-pad1_ net-_x1-pad2_ net-_sc1-pad2_ gnd output gnd avsd_opamp
+v2 net-_x1-pad1_ gnd  dc 5
+v3 gnd net-_x1-pad2_  dc 5
+xsc2 output net-_sc1-pad2_ sky130_fd_pr__cap_mim_m3_1 W=1 L=1 MF=0.75
+* u1  vin plot_v1
+* u2  output plot_v1
+xsc1 vin net-_sc1-pad2_ gnd sky130_fd_pr__res_generic_pd L=0.85
+* s c m o d e
+.tran 0.1e-00 10e-00 0e-00
+
+* Control Statements 
+.control
+run
+print allv > plot_data_v.txt
+print alli > plot_data_i.txt
+plot v(vin)
+plot v(output)
+.endc
+.end

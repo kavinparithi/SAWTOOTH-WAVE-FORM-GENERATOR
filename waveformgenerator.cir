@@ -1,0 +1,19 @@
+* C:\avkk\waveformgenerator\waveformgenerator.cir
+
+* EESchema Netlist Version 1.1 (Spice format) creation date: 10/08/22 17:01:06
+
+* To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
+* To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
+
+* Sheet Name: /
+v1  vin GND pulse		
+X1  Net-_X1-Pad1_ Net-_X1-Pad2_ Net-_SC1-Pad2_ GND output GND avsd_opamp		
+v2  Net-_X1-Pad1_ GND DC		
+v3  GND Net-_X1-Pad2_ DC		
+SC2  output Net-_SC1-Pad2_ sky130_fd_pr__cap_mim_m3_1		
+U1  vin plot_v1		
+U2  output plot_v1		
+SC1  vin Net-_SC1-Pad2_ GND sky130_fd_pr__res_generic_pd		
+scmode1  SKY130mode		
+
+.end
